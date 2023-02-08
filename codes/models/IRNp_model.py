@@ -165,7 +165,7 @@ class IRNpModel(BaseModel):
         loss = 0
         zshape = self.output[:, 3:, :, :].shape
 
-        LR = self.Quantization(self.output[:, :3, :, :])
+        LR = self.Quantization(LR_ref)
 
         gaussian_scale = self.train_opt['gaussian_scale'] if self.train_opt['gaussian_scale'] != None else 1
         y_ = torch.cat((LR, gaussian_scale * self.gaussian_batch(zshape)), dim=1)
@@ -176,7 +176,7 @@ class IRNpModel(BaseModel):
             l_forw_fit = self.loss_forward(self.output, self.ref_L)
             l_back_rec, l_back_fea, l_back_gan = self.loss_backward(self.real_H, self.fake_H)
 
-            loss += l_forw_fit + l_back_rec + l_back_fea + l_back_gan
+            loss += l_back_fea + l_back_gan
 
             loss.backward()
 

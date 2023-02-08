@@ -1,0 +1,38 @@
+22-06-14 19:40:53.424 - INFO:   name: IRN+_x4
+  suffix: None
+  model: IRN+
+  distortion: sr
+  scale: 4
+  crop_border: None
+  gpu_ids: [1]
+  datasets:[
+    test_1:[
+      name: set5
+      mode: LQGT
+      dataroot_GT: /workspace/cpfs-data/ffmpeg_tools/png
+      dataroot_LQ: None
+      phase: test
+      scale: 4
+      data_type: img
+    ]
+  ]
+  network_G:[
+    which_model_G:[
+      subnet_type: DBNet
+    ]
+    in_nc: 3
+    out_nc: 3
+    block_num: [8, 8]
+    scale: 4
+    init: xavier
+  ]
+  path:[
+    pretrain_model_G: ./experiments/IRN+_x4.pth
+    root: /workspace/cpfs-data/Invertible-Image-Rescaling-master
+    results_root: /workspace/cpfs-data/Invertible-Image-Rescaling-master/results/IRN+_x4
+    log: /workspace/cpfs-data/Invertible-Image-Rescaling-master/results/IRN+_x4
+  ]
+  is_train: False
+
+22-06-14 19:40:53.432 - INFO: Dataset [LQGTDataset - set5] is created.
+22-06-14 19:40:53.433 - INFO: Number of test images in [set5]: 213

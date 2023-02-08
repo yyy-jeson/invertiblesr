@@ -81,7 +81,6 @@ class IRNModel(BaseModel):
     def feed_data(self, data):
         self.ref_L = data['LQ'].to(self.device)  # LQ
         self.real_H = data['GT'].to(self.device)  # GT
-        print('self.ref_L:{}'.format(self.ref_L.shape))
 
     def gaussian_batch(self, dims):
         return torch.randn(tuple(dims)).to(self.device)
@@ -115,14 +114,15 @@ class IRNModel(BaseModel):
         l_forw_fit, l_forw_ce = self.loss_forward(self.output[:, :3, :, :], LR_ref, self.output[:, 3:, :, :])
 
         # backward upscaling
-        LR = self.Quantization(self.output[:, :3, :, :])
+        LR = self.Quantization(LR_ref)
+        
         gaussian_scale = self.train_opt['gaussian_scale'] if self.train_opt['gaussian_scale'] != None else 1
         y_ = torch.cat((LR, gaussian_scale * self.gaussian_batch(zshape)), dim=1)
 
         l_back_rec = self.loss_backward(self.real_H, y_)
 
         # total loss
-        loss = l_forw_fit + l_back_rec + l_forw_ce
+        loss = l_back_rec + l_forw_ce
         loss.backward()
 
         # gradient clipping
@@ -156,25 +156,6 @@ class IRNModel(BaseModel):
             self.fake_H = self.netG(x=y_forw, rev=True)[:, :3, :, :]
 
         self.netG.train()
-        
-    def print(self, LR_img):
-        Lshape = self.ref_L.shape
-        print('Lshape:{}'.format(Lshape))
-
-        input_dim = Lshape[1]
-        self.input = self.real_H
-
-        zshape = [Lshape[0], input_dim * (self.opt['scale']**2) - Lshape[1], Lshape[2], Lshape[3]]
-        print('zshape:{}'.format(zshape))
-
-        gaussian_scale = 1
-        if self.test_opt and self.test_opt['gaussian_scale'] != None:
-            gaussian_scale = self.test_opt['gaussian_scale']
-        print('gaussian_scale:{}'.format(gaussian_scale))
-        
-        print('LR_img shape:{}'.format(LR_img.shape))
-        zshape = [Lshape[0], Lshape[1] * (2**2 - 1), Lshape[2], Lshape[3]]
-        print('LR_img zshape:{}'.format(zshape))
 
     def downscale(self, HR_img):
         self.netG.eval()
@@ -186,8 +167,6 @@ class IRNModel(BaseModel):
         return LR_img
 
     def upscale(self, LR_img, scale, gaussian_scale=1):
-        LR_img = LR_img.to(self.device)
-        
         Lshape = LR_img.shape
         zshape = [Lshape[0], Lshape[1] * (scale**2 - 1), Lshape[2], Lshape[3]]
         y_ = torch.cat((LR_img, gaussian_scale * self.gaussian_batch(zshape)), dim=1)

@@ -1,0 +1,36 @@
+22-06-15 11:39:47.114 - INFO:   name: IRN_x2
+  suffix: None
+  model: IRN
+  distortion: sr
+  scale: 2
+  crop_border: None
+  gpu_ids: [0]
+  datasets:[
+    test_1:[
+      name: lol
+      mode: LQGT
+      dataroot_GT: /workspace/cpfs-data/ffmpeg_tools/new_model_test/source
+      dataroot_LQ: None
+      phase: test
+      scale: 2
+      data_type: img
+    ]
+  ]
+  network_G:[
+    which_model_G:[
+      subnet_type: DBNet
+    ]
+    in_nc: 3
+    out_nc: 3
+    block_num: [8]
+    scale: 2
+    init: xavier
+  ]
+  path:[
+    pretrain_model_G: ./experiments/latest_G.pth
+    root: /workspace/cpfs-data/Invertible-Image-Rescaling-master
+    results_root: /workspace/cpfs-data/Invertible-Image-Rescaling-master/results/IRN_x2
+    log: /workspace/cpfs-data/Invertible-Image-Rescaling-master/results/IRN_x2
+  ]
+  is_train: False
+

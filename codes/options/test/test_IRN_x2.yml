@@ -8,7 +8,7 @@ gpu_ids: [0]
 
 datasets:
   test_1:  # the 1st test dataset
-    name: set5
+    name: lol
     mode: LQGT
     dataroot_GT: ./image/H/
     dataroot_LQ: ~
@@ -26,4 +26,5 @@ network_G:
 
 #### path
 path:
-  pretrain_model_G: ../experiments/latest_G.pth
+  #pretrain_model_G: ../experiments/down_scale.pth
+  pretrain_model_G: ../experiments/up_scale_1000000_G.pth

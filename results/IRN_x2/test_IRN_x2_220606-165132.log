@@ -1,0 +1,318 @@
+22-06-06 16:51:32.015 - INFO:   name: IRN_x2
+  suffix: None
+  model: IRN
+  distortion: sr
+  scale: 2
+  crop_border: None
+  gpu_ids: [0]
+  datasets:[
+    test_1:[
+      name: lol
+      mode: LQGT
+      dataroot_GT: /workspace/cpfs-data/ffmpeg_tools/png
+      dataroot_LQ: None
+      phase: test
+      scale: 2
+      data_type: img
+    ]
+  ]
+  network_G:[
+    which_model_G:[
+      subnet_type: DBNet
+    ]
+    in_nc: 3
+    out_nc: 3
+    block_num: [8]
+    scale: 2
+    init: xavier
+  ]
+  path:[
+    pretrain_model_G: ./experiments/IRN_x2.pth
+    root: /workspace/cpfs-data/Invertible-Image-Rescaling-master
+    results_root: /workspace/cpfs-data/Invertible-Image-Rescaling-master/results/IRN_x2
+    log: /workspace/cpfs-data/Invertible-Image-Rescaling-master/results/IRN_x2
+  ]
+  is_train: False
+
+22-06-06 16:51:32.106 - INFO: Dataset [LQGTDataset - lol] is created.
+22-06-06 16:51:32.106 - INFO: Number of test images in [lol]: 202
+22-06-06 16:51:36.970 - INFO: Network G structure: DataParallel - InvRescaleNet, with parameters: 1,668,000
+22-06-06 16:51:36.970 - INFO: InvRescaleNet(
+  (operations): ModuleList(
+    (0): HaarDownsampling()
+    (1): InvBlockExp(
+      (F): DenseBlock(
+        (conv1): Conv2d(9, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(41, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(73, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(105, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(137, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (G): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (H): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (2): InvBlockExp(
+      (F): DenseBlock(
+        (conv1): Conv2d(9, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(41, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(73, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(105, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(137, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (G): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (H): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (3): InvBlockExp(
+      (F): DenseBlock(
+        (conv1): Conv2d(9, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(41, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(73, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(105, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(137, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (G): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (H): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (4): InvBlockExp(
+      (F): DenseBlock(
+        (conv1): Conv2d(9, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(41, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(73, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(105, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(137, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (G): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (H): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (5): InvBlockExp(
+      (F): DenseBlock(
+        (conv1): Conv2d(9, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(41, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(73, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(105, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(137, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (G): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (H): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (6): InvBlockExp(
+      (F): DenseBlock(
+        (conv1): Conv2d(9, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(41, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(73, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(105, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(137, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (G): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (H): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (7): InvBlockExp(
+      (F): DenseBlock(
+        (conv1): Conv2d(9, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(41, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(73, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(105, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(137, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (G): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (H): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (8): InvBlockExp(
+      (F): DenseBlock(
+        (conv1): Conv2d(9, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(41, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(73, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(105, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(137, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (G): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (H): DenseBlock(
+        (conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv2): Conv2d(35, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv3): Conv2d(67, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv4): Conv2d(99, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv5): Conv2d(131, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (lrelu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+  )
+)
+22-06-06 16:51:36.970 - INFO: Loading model for G [./experiments/IRN_x2.pth] ...
+22-06-06 16:51:37.034 - INFO: Model [IRNModel] is created.
+22-06-06 16:51:37.034 - INFO: 
+Testing [lol]...
+22-06-06 17:07:21.938 - INFO: 00001-checkpoint     - PSNR: 37.229681 dB; SSIM: 0.989555; PSNR_Y: 40.708629 dB; SSIM_Y: 0.995874. LR PSNR: 37.919091 dB; SSIM: 0.987155; PSNR_Y: 44.309611 dB; SSIM_Y: 0.997204.
+22-06-06 17:07:28.548 - INFO: 00008-checkpoint     - PSNR: 37.236801 dB; SSIM: 0.989488; PSNR_Y: 40.730789 dB; SSIM_Y: 0.995894. LR PSNR: 37.888970 dB; SSIM: 0.986803; PSNR_Y: 44.355205 dB; SSIM_Y: 0.997149.
+22-06-06 17:07:35.434 - INFO: 00001                - PSNR: 37.228677 dB; SSIM: 0.989555; PSNR_Y: 40.707797 dB; SSIM_Y: 0.995875. LR PSNR: 37.919091 dB; SSIM: 0.987155; PSNR_Y: 44.309611 dB; SSIM_Y: 0.997204.
+22-06-06 17:07:42.511 - INFO: 00002                - PSNR: 37.270951 dB; SSIM: 0.989546; PSNR_Y: 40.775696 dB; SSIM_Y: 0.995894. LR PSNR: 37.912582 dB; SSIM: 0.986879; PSNR_Y: 44.336240 dB; SSIM_Y: 0.997161.
+22-06-06 17:07:50.299 - INFO: 00003                - PSNR: 37.154104 dB; SSIM: 0.989166; PSNR_Y: 40.630374 dB; SSIM_Y: 0.995645. LR PSNR: 37.822168 dB; SSIM: 0.986365; PSNR_Y: 44.241010 dB; SSIM_Y: 0.997036.
+22-06-06 17:07:56.890 - INFO: 00004                - PSNR: 37.273363 dB; SSIM: 0.989571; PSNR_Y: 40.776810 dB; SSIM_Y: 0.995912. LR PSNR: 37.940153 dB; SSIM: 0.987059; PSNR_Y: 44.330764 dB; SSIM_Y: 0.997194.
+22-06-06 17:08:04.095 - INFO: 00005                - PSNR: 37.258775 dB; SSIM: 0.989501; PSNR_Y: 40.790931 dB; SSIM_Y: 0.995920. LR PSNR: 37.877530 dB; SSIM: 0.986779; PSNR_Y: 44.337491 dB; SSIM_Y: 0.997142.
+22-06-06 17:08:10.756 - INFO: 00006                - PSNR: 37.167327 dB; SSIM: 0.989195; PSNR_Y: 40.661160 dB; SSIM_Y: 0.995726. LR PSNR: 37.805909 dB; SSIM: 0.986310; PSNR_Y: 44.243244 dB; SSIM_Y: 0.997008.
+22-06-06 17:21:50.157 - INFO: 00007                - PSNR: 37.284979 dB; SSIM: 0.989571; PSNR_Y: 40.785124 dB; SSIM_Y: 0.995950. LR PSNR: 37.913309 dB; SSIM: 0.987001; PSNR_Y: 44.309853 dB; SSIM_Y: 0.997166.
+22-06-06 17:21:57.219 - INFO: 00008                - PSNR: 37.235997 dB; SSIM: 0.989487; PSNR_Y: 40.729387 dB; SSIM_Y: 0.995894. LR PSNR: 37.888970 dB; SSIM: 0.986803; PSNR_Y: 44.355205 dB; SSIM_Y: 0.997149.
+22-06-06 17:22:37.675 - INFO: 00009                - PSNR: 37.174809 dB; SSIM: 0.989173; PSNR_Y: 40.672366 dB; SSIM_Y: 0.995719. LR PSNR: 37.810791 dB; SSIM: 0.986314; PSNR_Y: 44.314002 dB; SSIM_Y: 0.997035.
+22-06-06 17:25:26.932 - INFO: 00010                - PSNR: 37.269655 dB; SSIM: 0.989539; PSNR_Y: 40.776545 dB; SSIM_Y: 0.995945. LR PSNR: 37.915517 dB; SSIM: 0.987061; PSNR_Y: 44.342175 dB; SSIM_Y: 0.997180.
+22-06-06 17:25:34.036 - INFO: 00011                - PSNR: 37.172466 dB; SSIM: 0.989404; PSNR_Y: 40.648969 dB; SSIM_Y: 0.995864. LR PSNR: 37.869271 dB; SSIM: 0.986686; PSNR_Y: 44.258322 dB; SSIM_Y: 0.997097.
+22-06-06 17:28:59.300 - INFO: 00012                - PSNR: 37.088273 dB; SSIM: 0.989137; PSNR_Y: 40.543753 dB; SSIM_Y: 0.995687. LR PSNR: 37.790830 dB; SSIM: 0.986276; PSNR_Y: 44.195867 dB; SSIM_Y: 0.996988.
+22-06-06 17:29:06.182 - INFO: 00013                - PSNR: 37.192995 dB; SSIM: 0.989467; PSNR_Y: 40.658457 dB; SSIM_Y: 0.995908. LR PSNR: 37.903856 dB; SSIM: 0.987013; PSNR_Y: 44.260397 dB; SSIM_Y: 0.997153.
+22-06-06 17:29:12.969 - INFO: 00014                - PSNR: 37.205172 dB; SSIM: 0.989393; PSNR_Y: 40.676486 dB; SSIM_Y: 0.995869. LR PSNR: 37.892890 dB; SSIM: 0.986754; PSNR_Y: 44.298902 dB; SSIM_Y: 0.997108.
+22-06-06 17:36:03.011 - INFO: 00015                - PSNR: 37.097604 dB; SSIM: 0.989093; PSNR_Y: 40.540596 dB; SSIM_Y: 0.995654. LR PSNR: 37.804404 dB; SSIM: 0.986314; PSNR_Y: 44.263195 dB; SSIM_Y: 0.997018.
+22-06-06 17:36:09.766 - INFO: 00016                - PSNR: 37.165109 dB; SSIM: 0.989352; PSNR_Y: 40.623646 dB; SSIM_Y: 0.995850. LR PSNR: 37.862684 dB; SSIM: 0.986815; PSNR_Y: 44.293436 dB; SSIM_Y: 0.997130.
+22-06-06 17:36:50.157 - INFO: 00017                - PSNR: 37.147735 dB; SSIM: 0.989285; PSNR_Y: 40.588227 dB; SSIM_Y: 0.995791. LR PSNR: 37.875789 dB; SSIM: 0.986675; PSNR_Y: 44.273733 dB; SSIM_Y: 0.997095.
+22-06-06 17:49:51.453 - INFO: 00018                - PSNR: 37.091236 dB; SSIM: 0.989096; PSNR_Y: 40.524844 dB; SSIM_Y: 0.995668. LR PSNR: 37.772327 dB; SSIM: 0.986209; PSNR_Y: 44.213328 dB; SSIM_Y: 0.996981.
+22-06-06 17:49:58.744 - INFO: 00019                - PSNR: 37.170322 dB; SSIM: 0.989309; PSNR_Y: 40.629233 dB; SSIM_Y: 0.995820. LR PSNR: 37.849868 dB; SSIM: 0.986584; PSNR_Y: 44.259637 dB; SSIM_Y: 0.997057.
+22-06-06 17:50:06.107 - INFO: 00020                - PSNR: 37.183287 dB; SSIM: 0.989247; PSNR_Y: 40.650019 dB; SSIM_Y: 0.995786. LR PSNR: 37.869785 dB; SSIM: 0.986484; PSNR_Y: 44.279601 dB; SSIM_Y: 0.997033.
+22-06-06 17:50:13.113 - INFO: 00021                - PSNR: 37.039357 dB; SSIM: 0.988958; PSNR_Y: 40.473096 dB; SSIM_Y: 0.995575. LR PSNR: 37.800663 dB; SSIM: 0.986185; PSNR_Y: 44.226913 dB; SSIM_Y: 0.996970.
+22-06-06 17:50:19.717 - INFO: 00022                - PSNR: 37.205929 dB; SSIM: 0.989241; PSNR_Y: 40.715873 dB; SSIM_Y: 0.995815. LR PSNR: 37.872015 dB; SSIM: 0.986619; PSNR_Y: 44.339232 dB; SSIM_Y: 0.997073.
+22-06-06 17:50:26.841 - INFO: 00023                - PSNR: 37.140974 dB; SSIM: 0.989196; PSNR_Y: 40.648359 dB; SSIM_Y: 0.995794. LR PSNR: 37.811259 dB; SSIM: 0.986520; PSNR_Y: 44.253143 dB; SSIM_Y: 0.997051.
+22-06-06 17:50:33.777 - INFO: 00024                - PSNR: 37.057191 dB; SSIM: 0.989046; PSNR_Y: 40.532244 dB; SSIM_Y: 0.995681. LR PSNR: 37.754234 dB; SSIM: 0.986229; PSNR_Y: 44.193052 dB; SSIM_Y: 0.996981.
+22-06-06 17:50:40.807 - INFO: 00025                - PSNR: 37.106813 dB; SSIM: 0.989192; PSNR_Y: 40.566341 dB; SSIM_Y: 0.995760. LR PSNR: 37.835823 dB; SSIM: 0.986627; PSNR_Y: 44.215191 dB; SSIM_Y: 0.997053.
+22-06-06 17:50:47.673 - INFO: 00026                - PSNR: 37.142730 dB; SSIM: 0.989115; PSNR_Y: 40.614205 dB; SSIM_Y: 0.995726. LR PSNR: 37.841266 dB; SSIM: 0.986520; PSNR_Y: 44.220981 dB; SSIM_Y: 0.997030.
+22-06-06 17:50:54.919 - INFO: 00027                - PSNR: 37.029014 dB; SSIM: 0.988822; PSNR_Y: 40.453669 dB; SSIM_Y: 0.995491. LR PSNR: 37.778126 dB; SSIM: 0.986156; PSNR_Y: 44.171696 dB; SSIM_Y: 0.996948.
+22-06-06 17:51:25.977 - INFO: 00028                - PSNR: 37.154921 dB; SSIM: 0.989157; PSNR_Y: 40.633598 dB; SSIM_Y: 0.995762. LR PSNR: 37.846282 dB; SSIM: 0.986681; PSNR_Y: 44.228830 dB; SSIM_Y: 0.997057.
+22-06-06 17:52:53.211 - INFO: 00029                - PSNR: 37.141467 dB; SSIM: 0.989129; PSNR_Y: 40.635527 dB; SSIM_Y: 0.995766. LR PSNR: 37.822603 dB; SSIM: 0.986625; PSNR_Y: 44.215722 dB; SSIM_Y: 0.997048.
+22-06-06 17:53:00.728 - INFO: 00030                - PSNR: 37.032180 dB; SSIM: 0.988914; PSNR_Y: 40.500618 dB; SSIM_Y: 0.995610. LR PSNR: 37.752887 dB; SSIM: 0.986320; PSNR_Y: 44.162815 dB; SSIM_Y: 0.996989.
+22-06-06 17:53:08.591 - INFO: 00031                - PSNR: 37.134869 dB; SSIM: 0.989171; PSNR_Y: 40.639213 dB; SSIM_Y: 0.995810. LR PSNR: 37.827542 dB; SSIM: 0.986774; PSNR_Y: 44.219420 dB; SSIM_Y: 0.997080.
+22-06-06 17:53:15.020 - INFO: 00032                - PSNR: 37.144745 dB; SSIM: 0.989099; PSNR_Y: 40.684405 dB; SSIM_Y: 0.995806. LR PSNR: 37.793891 dB; SSIM: 0.986628; PSNR_Y: 44.235139 dB; SSIM_Y: 0.997063.
+22-06-06 17:53:22.129 - INFO: 00033                - PSNR: 36.991235 dB; SSIM: 0.988723; PSNR_Y: 40.473264 dB; SSIM_Y: 0.995522. LR PSNR: 37.735965 dB; SSIM: 0.986237; PSNR_Y: 44.183722 dB; SSIM_Y: 0.996972.
+22-06-06 17:53:28.836 - INFO: 00034                - PSNR: 37.150923 dB; SSIM: 0.989074; PSNR_Y: 40.687579 dB; SSIM_Y: 0.995804. LR PSNR: 37.799630 dB; SSIM: 0.986796; PSNR_Y: 44.257333 dB; SSIM_Y: 0.997096.
+22-06-06 17:53:44.471 - INFO: 00035                - PSNR: 37.140547 dB; SSIM: 0.989034; PSNR_Y: 40.688780 dB; SSIM_Y: 0.995790. LR PSNR: 37.810834 dB; SSIM: 0.986639; PSNR_Y: 44.224548 dB; SSIM_Y: 0.997042.
+22-06-06 17:53:51.515 - INFO: 00036                - PSNR: 37.002309 dB; SSIM: 0.988735; PSNR_Y: 40.516219 dB; SSIM_Y: 0.995576. LR PSNR: 37.687993 dB; SSIM: 0.986109; PSNR_Y: 44.129073 dB; SSIM_Y: 0.996928.
+22-06-06 17:53:58.518 - INFO: 00037                - PSNR: 37.162579 dB; SSIM: 0.989123; PSNR_Y: 40.698993 dB; SSIM_Y: 0.995837. LR PSNR: 37.829630 dB; SSIM: 0.986956; PSNR_Y: 44.214228 dB; SSIM_Y: 0.997110.
+22-06-06 17:54:10.765 - INFO: 00038                - PSNR: 37.153551 dB; SSIM: 0.989089; PSNR_Y: 40.680718 dB; SSIM_Y: 0.995800. LR PSNR: 37.825133 dB; SSIM: 0.986775; PSNR_Y: 44.223811 dB; SSIM_Y: 0.997084.
+22-06-06 17:54:17.758 - INFO: 00039                - PSNR: 36.996574 dB; SSIM: 0.988758; PSNR_Y: 40.489671 dB; SSIM_Y: 0.995573. LR PSNR: 37.715850 dB; SSIM: 0.986114; PSNR_Y: 44.115104 dB; SSIM_Y: 0.996927.
+22-06-06 17:54:34.073 - INFO: 00040                - PSNR: 37.141037 dB; SSIM: 0.989098; PSNR_Y: 40.661507 dB; SSIM_Y: 0.995802. LR PSNR: 37.851942 dB; SSIM: 0.987026; PSNR_Y: 44.261730 dB; SSIM_Y: 0.997155.
+22-06-06 17:54:40.861 - INFO: 00041                - PSNR: 37.195765 dB; SSIM: 0.989069; PSNR_Y: 40.747818 dB; SSIM_Y: 0.995781. LR PSNR: 37.790763 dB; SSIM: 0.986690; PSNR_Y: 44.242380 dB; SSIM_Y: 0.997088.
+22-06-06 17:54:47.729 - INFO: 00042                - PSNR: 36.958315 dB; SSIM: 0.988629; PSNR_Y: 40.434621 dB; SSIM_Y: 0.995475. LR PSNR: 37.706816 dB; SSIM: 0.986072; PSNR_Y: 44.101901 dB; SSIM_Y: 0.996918.
+22-06-06 17:54:54.524 - INFO: 00043                - PSNR: 37.170183 dB; SSIM: 0.989137; PSNR_Y: 40.695741 dB; SSIM_Y: 0.995814. LR PSNR: 37.822629 dB; SSIM: 0.986982; PSNR_Y: 44.225015 dB; SSIM_Y: 0.997141.
+22-06-06 17:55:18.501 - INFO: 00044                - PSNR: 37.155037 dB; SSIM: 0.988972; PSNR_Y: 40.703247 dB; SSIM_Y: 0.995725. LR PSNR: 37.752514 dB; SSIM: 0.986535; PSNR_Y: 44.195645 dB; SSIM_Y: 0.997042.
+22-06-06 17:55:25.073 - INFO: 00045                - PSNR: 36.915743 dB; SSIM: 0.988549; PSNR_Y: 40.411713 dB; SSIM_Y: 0.995447. LR PSNR: 37.666767 dB; SSIM: 0.986045; PSNR_Y: 44.114826 dB; SSIM_Y: 0.996933.
+22-06-06 18:13:22.277 - INFO: 00046                - PSNR: 37.083778 dB; SSIM: 0.988988; PSNR_Y: 40.602821 dB; SSIM_Y: 0.995733. LR PSNR: 37.757390 dB; SSIM: 0.986779; PSNR_Y: 44.176191 dB; SSIM_Y: 0.997100.
+22-06-06 18:13:28.943 - INFO: 00047                - PSNR: 37.096480 dB; SSIM: 0.988936; PSNR_Y: 40.620542 dB; SSIM_Y: 0.995688. LR PSNR: 37.734893 dB; SSIM: 0.986427; PSNR_Y: 44.181443 dB; SSIM_Y: 0.997038.
+22-06-06 18:13:35.529 - INFO: 00048                - PSNR: 36.944395 dB; SSIM: 0.988562; PSNR_Y: 40.423539 dB; SSIM_Y: 0.995437. LR PSNR: 37.680597 dB; SSIM: 0.986021; PSNR_Y: 44.087456 dB; SSIM_Y: 0.996919.
+22-06-06 18:13:42.151 - INFO: 00049                - PSNR: 37.203118 dB; SSIM: 0.989152; PSNR_Y: 40.742859 dB; SSIM_Y: 0.995810. LR PSNR: 37.823592 dB; SSIM: 0.986907; PSNR_Y: 44.268726 dB; SSIM_Y: 0.997139.
+22-06-06 18:13:48.923 - INFO: 00050                - PSNR: 37.062797 dB; SSIM: 0.988970; PSNR_Y: 40.568449 dB; SSIM_Y: 0.995694. LR PSNR: 37.766248 dB; SSIM: 0.986563; PSNR_Y: 44.155165 dB; SSIM_Y: 0.997048.
+22-06-06 18:13:55.528 - INFO: 00051                - PSNR: 36.900293 dB; SSIM: 0.988492; PSNR_Y: 40.428325 dB; SSIM_Y: 0.995438. LR PSNR: 37.671802 dB; SSIM: 0.985957; PSNR_Y: 44.111816 dB; SSIM_Y: 0.996919.
+22-06-06 18:14:04.162 - INFO: 00052                - PSNR: 37.093396 dB; SSIM: 0.989039; PSNR_Y: 40.627584 dB; SSIM_Y: 0.995746. LR PSNR: 37.824366 dB; SSIM: 0.986839; PSNR_Y: 44.178893 dB; SSIM_Y: 0.997109.
+22-06-06 18:14:10.654 - INFO: 00053                - PSNR: 37.084748 dB; SSIM: 0.988902; PSNR_Y: 40.632591 dB; SSIM_Y: 0.995666. LR PSNR: 37.776142 dB; SSIM: 0.986465; PSNR_Y: 44.197157 dB; SSIM_Y: 0.997044.
+22-06-06 18:15:30.483 - INFO: 00054                - PSNR: 36.886048 dB; SSIM: 0.988524; PSNR_Y: 40.405317 dB; SSIM_Y: 0.995409. LR PSNR: 37.706280 dB; SSIM: 0.985956; PSNR_Y: 44.122090 dB; SSIM_Y: 0.996910.
+22-06-06 18:15:36.931 - INFO: 00055                - PSNR: 36.996895 dB; SSIM: 0.988833; PSNR_Y: 40.564530 dB; SSIM_Y: 0.995674. LR PSNR: 37.801856 dB; SSIM: 0.986787; PSNR_Y: 44.200326 dB; SSIM_Y: 0.997096.
+22-06-06 18:21:05.636 - INFO: 00056                - PSNR: 37.057118 dB; SSIM: 0.988811; PSNR_Y: 40.632326 dB; SSIM_Y: 0.995666. LR PSNR: 37.782189 dB; SSIM: 0.986507; PSNR_Y: 44.212464 dB; SSIM_Y: 0.997059.
+22-06-06 18:34:58.769 - INFO: 00057                - PSNR: 36.861778 dB; SSIM: 0.988435; PSNR_Y: 40.420820 dB; SSIM_Y: 0.995404. LR PSNR: 37.682392 dB; SSIM: 0.985952; PSNR_Y: 44.095918 dB; SSIM_Y: 0.996902.
+22-06-06 18:35:06.140 - INFO: 00058                - PSNR: 37.129145 dB; SSIM: 0.988929; PSNR_Y: 40.724588 dB; SSIM_Y: 0.995757. LR PSNR: 37.830735 dB; SSIM: 0.986861; PSNR_Y: 44.266790 dB; SSIM_Y: 0.997134.
+22-06-06 18:35:12.813 - INFO: 00059                - PSNR: 37.048578 dB; SSIM: 0.988775; PSNR_Y: 40.633343 dB; SSIM_Y: 0.995658. LR PSNR: 37.828156 dB; SSIM: 0.986497; PSNR_Y: 44.214683 dB; SSIM_Y: 0.997033.
+22-06-06 18:35:19.196 - INFO: 00060                - PSNR: 36.891103 dB; SSIM: 0.988487; PSNR_Y: 40.450803 dB; SSIM_Y: 0.995443. LR PSNR: 37.704956 dB; SSIM: 0.985975; PSNR_Y: 44.120671 dB; SSIM_Y: 0.996908.

@@ -7,12 +7,12 @@ import random
 import logging
 from collections import OrderedDict
 import numpy as np
-import cv2
+import cv2, subprocess
 import torch
 from torchvision.utils import make_grid
 from shutil import get_terminal_size
-
 import yaml
+
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
 except ImportError:
@@ -153,6 +153,16 @@ def img2tensor(path):
 def save_img(img, img_path, mode='RGB'):
     cv2.imwrite(img_path, img)
 
+def npimg2tensor(img_LQ):
+    H, W, C = img_LQ.shape
+    # BGR to RGB, HWC to CHW, numpy to tensor
+    if img_LQ.shape[2] == 3:
+        img_LQ = img_LQ[:, :, [2, 1, 0]]
+    img_LQ = torch.from_numpy(np.ascontiguousarray(np.transpose(img_LQ, (2, 0, 1)))).float()
+
+    shape = img_LQ.shape
+    img_LQ = img_LQ.reshape(1, shape[0], shape[1], shape[2])
+    return img_LQ   
 
 ####################
 # metric
@@ -261,3 +271,25 @@ class ProgressBar(object):
             sys.stdout.write('completed: {}, elapsed: {}s, {:.1f} tasks/s'.format(
                 self.completed, int(elapsed + 0.5), fps))
         sys.stdout.flush()
+
+
+def ysp_ffmpeg_transcode_video_file(indir, out_video_file, \
+    ffmpeg_cmd_path="/workspace/cpfs-data/data/srdata/tools/ffmpeg"):
+    '''
+    ffmpeg: [ffmpeg_cmd_path] transcode ".mp4" in [indir] to [outdir] with [rescale_ratio]
+    '''
+    lrpath = '{}/{}.png'.format(indir, ("%05d" % 1))
+    img = read_img(lrpath)
+    (h,w,_) = img.shape
+    command = '{} -i {} -max_muxing_queue_size -10240 -vsync cfr -pix_fmt yuv420p \
+        -flags +loop -movflags +faststart -vf scale={}:{} -c:a libfdk_aac -b:a 128000 -ar 44100 -c:v libhy264 \
+        -preset slow -tune psnr -profile:v high -crf 20.00 \
+        -x264-params colorprim=bt709:transfer=bt709:colormatrix=bt709:deblock=-2,1:psnr=1:threads=4:ref=4:level=4.1:vbv-maxrate=450:vbv-bufsize=500:keyint=150:min-keyint=25:aq-mode=1 \
+        -y {}'.format(ffmpeg_cmd_path, "{}/%05d".format(indir), str(w), str(h), out_video_file)
+
+    try:
+        print(command)
+        subprocess.run(command, shell=True, check=True)
+    except Exception as e:
+        print(f"{command} error:{e}")
+    
